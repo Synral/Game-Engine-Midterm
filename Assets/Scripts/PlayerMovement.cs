@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject cam;
     private Vector3 playerVelocity;
     private float moveSpeed = 15.0f;
-    private float jumpSpeed = 3.0f;
+    private float jumpSpeed = 1.0f;
     private float gravity = -9.81f;
     private bool onGround;
 
@@ -36,5 +36,9 @@ public class PlayerMovement : MonoBehaviour
 
         playerVelocity.y += gravity * Time.deltaTime;
         player.Move(playerVelocity * Time.deltaTime * jumpSpeed);
+
+        if (player.transform.position.y <= -1.5f)
+        //respawn;
+        Debug.Log(player.transform.position);
     }
 }
