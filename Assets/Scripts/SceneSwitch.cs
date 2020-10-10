@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneSwitch : MonoBehaviour
 {
+    public PluginsManager plugins;
     public void enterMenuScene()
     {
         SceneManager.LoadScene("MenuScene");
@@ -12,6 +13,8 @@ public class SceneSwitch : MonoBehaviour
     public void enterPlayScene()
     {
         SceneManager.LoadScene("PlayScene");
+        plugins.ReloadLogger();
+
     }
     public void enterScoreScene()
     {

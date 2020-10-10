@@ -9,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController player;
     public GameObject cam;
     public SceneSwitch sceneSwitch;
+    public Score score;
     private Vector3 playerVelocity;
     private float moveSpeed = 15.0f;
-    private float jumpSpeed = 1.5f;
+    private float jumpSpeed = 3.5f;
     private float gravity = -9.81f;
     private bool onGround;
 
@@ -51,7 +52,11 @@ public class PlayerMovement : MonoBehaviour
                 if (cp.checkpoints[i].gameObject == other.gameObject && !cp.active[i])
                 {
                     cp.active[i] = true;
+                    if (i != 0)
+                    {
                     plugins.saveCheckpoint();
+                    Score.checkpointCount++;
+                    }
                 }
             }
         if (other.gameObject.tag == "Finish")

@@ -22,7 +22,7 @@ public class Checkpoints : MonoBehaviour
     void activateCheckpoints(int index)
     {
         active[index] = true;
-        if (index != 1)
+        if (index != 0)
         plugins.saveCheckpoint();
     }
     public void respawn()
