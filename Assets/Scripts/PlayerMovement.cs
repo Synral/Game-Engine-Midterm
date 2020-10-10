@@ -43,15 +43,17 @@ public class PlayerMovement : MonoBehaviour
         if (player.transform.position.y <= -1.5f)
             cp.respawn();
     }
-    private void OnTriggerEnter(Collider other) {
-        
+    private void OnTriggerEnter(Collider other) 
+    {
         if (other.gameObject.tag == "Respawn")
             for (int i = 0; i < 6; i++)
+            {
                 if (cp.checkpoints[i].gameObject == other.gameObject && !cp.active[i])
                 {
                     cp.active[i] = true;
                     plugins.saveCheckpoint();
                 }
+            }
         if (other.gameObject.tag == "Finish")
         {
             Cursor.lockState = CursorLockMode.None;

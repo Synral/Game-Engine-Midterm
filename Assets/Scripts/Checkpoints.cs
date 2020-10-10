@@ -14,13 +14,6 @@ public class Checkpoints : MonoBehaviour
         for (int i=0;i<6;i++)
         active[i] = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void resetCheckpoints()
     {
         for (int i = 0; i < 6; i++)
@@ -32,10 +25,8 @@ public class Checkpoints : MonoBehaviour
         if (index != 1)
         plugins.saveCheckpoint();
     }
-
     public void respawn()
     {
-        Debug.Log(active);
         for (int i=5;i>=0;i--)
         if (active[i])
         {
