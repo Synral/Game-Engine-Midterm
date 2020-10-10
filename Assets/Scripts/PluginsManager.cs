@@ -54,26 +54,15 @@ public class PluginsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            float currentTime = Time.time;
-            float checkpointTime = currentTime - lastTime;
-            lastTime = currentTime;
-            SaveTime(checkpointTime);
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha0+i))
-            {
-                Debug.Log(LoadCheckpointTime(i));
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.T))
-            Debug.Log(LoadTotalTime());
     }
 
+    public void saveCheckpoint()
+    {
+        float currentTime = Time.time;
+        float checkpointTime = currentTime - lastTime;
+        lastTime = currentTime;
+        SaveTime(checkpointTime);
+    }
     private void OnDestroy() 
     {
         ReloadLogger();    

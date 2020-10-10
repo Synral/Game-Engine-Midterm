@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Checkpoints cp;
+    public PluginsManager plugins;
     public CharacterController player;
     public GameObject cam;
+    public SceneSwitch sceneSwitch;
     private Vector3 playerVelocity;
     private float moveSpeed = 15.0f;
-    private float jumpSpeed = 1.0f;
+    private float jumpSpeed = 1.5f;
     private float gravity = -9.81f;
     private bool onGround;
 
@@ -38,7 +41,21 @@ public class PlayerMovement : MonoBehaviour
         player.Move(playerVelocity * Time.deltaTime * jumpSpeed);
 
         if (player.transform.position.y <= -1.5f)
-        //respawn;
-        Debug.Log(player.transform.position);
+            cp.respawn();
+    }
+    private void OnTriggerEnter(Collider other) {
+        
+        if (other.gameObject.tag == "Respawn")
+            for (int i = 0; i < 6; i++)
+                if (cp.checkpoints[i].gameObject == other.gameObject && !cp.active[i])
+                {
+                    cp.active[i] = true;
+                    plugins.saveCheckpoint();
+                }
+        if (other.gameObject.tag == "Finish")
+        {
+            Cursor.lockState = CursorLockMode.None;
+            sceneSwitch.enterScoreScene();
+        }
     }
 }
